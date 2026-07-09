@@ -47,13 +47,14 @@ h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;line-height:1.1;color:var(--her
 
 /* ---------- Top bar ---------- */
 .topbar{position:sticky;top:0;z-index:50;background:var(--heritage);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
-.topbar .wrap{display:flex;align-items:center;gap:16px;height:64px}
+.topbar .wrap{display:flex;align-items:center;gap:16px;min-height:64px}
 .brand{display:flex;align-items:center;gap:12px;cursor:pointer}
 .brand .mark{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--blue),var(--yellow));display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;color:var(--heritage);font-size:18px}
 .brand .name{color:#fff;font-family:'Fraunces',serif;font-size:17px}
 .brand .name small{display:block;font-family:'Source Sans 3';font-size:11px;letter-spacing:.06em;opacity:.7;text-transform:uppercase}
-.topnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
-.topnav button{background:transparent;border:0;color:rgba(255,255,255,.78);font:inherit;font-size:14px;padding:8px 12px;border-radius:8px;cursor:pointer}
+.topnav{margin-left:auto;display:flex;gap:2px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.topnav::-webkit-scrollbar{display:none}
+.topnav button{background:transparent;border:0;color:rgba(255,255,255,.78);font:inherit;font-size:14px;padding:8px 10px;border-radius:8px;cursor:pointer;white-space:nowrap;flex:0 0 auto}
 .topnav button:hover{background:rgba(255,255,255,.1);color:#fff}
 .topnav button.active{background:var(--yellow);color:var(--heritage);font-weight:600}
 
@@ -408,6 +409,60 @@ footer a{color:var(--blue);text-decoration:none}
 .help p{font-size:14px;color:var(--muted)}
 .help p strong{color:var(--heritage)}
 
+/* ---------- FAQ ---------- */
+.faq-search{position:relative;margin:24px 0 18px}
+.faq-search input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:15px 18px 15px 48px;font:inherit;font-size:16px;color:var(--ink);background:#fff;transition:.15s}
+.faq-search input:focus{outline:none;border-color:var(--heritage);box-shadow:0 0 0 3px rgba(0,15,70,.08)}
+.faq-search .si{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:20px;height:20px;stroke:var(--muted);fill:none;stroke-width:2;pointer-events:none}
+.faq-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.faq-filters button{background:#fff;border:1.5px solid var(--line);border-radius:30px;padding:8px 16px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--text-blue);transition:.15s}
+.faq-filters button:hover{border-color:var(--blue)}
+.faq-filters button.active{background:var(--heritage);color:#fff;border-color:var(--heritage)}
+.faq-cat{margin-top:32px}
+.faq-cat.hidden-cat{display:none}
+.faq-cat > h2{font-size:23px;display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.faq-cat > h2 .cdot{width:12px;height:12px;border-radius:50%;flex:0 0 auto}
+.faq-cat > .cat-sub{color:var(--muted);font-size:14px;margin-bottom:12px}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden;transition:.2s}
+.faq-item.faq-hidden{display:none}
+.faq-item:hover{box-shadow:var(--shadow-lg)}
+.faq-item .faq-q{display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;user-select:none;font-family:'Fraunces',Georgia,serif;font-size:17px;color:var(--heritage);line-height:1.3}
+.faq-item .faq-q .qmark{flex:0 0 auto;width:26px;height:26px;border-radius:7px;background:rgba(0,15,70,.06);color:var(--text-blue);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;font-family:'Source Sans 3',sans-serif}
+.faq-item .faq-q .chev{margin-left:auto;width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2;transition:transform .25s;flex:0 0 auto}
+.faq-item.open .faq-q .chev{transform:rotate(180deg)}
+.faq-item .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.open .faq-a{max-height:1200px}
+.faq-item .faq-a-inner{padding:0 20px 20px 60px;color:var(--muted);font-size:15px}
+.faq-item .faq-a-inner p{margin:0 0 10px}
+.faq-item .faq-a-inner ul{list-style:none;margin:8px 0}
+.faq-item .faq-a-inner ul li{position:relative;padding-left:20px;margin:6px 0}
+.faq-item .faq-a-inner ul li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--sage-light)}
+.faq-item .faq-a-inner strong{color:var(--text-blue)}
+.faq-item .faq-a-inner h5{font-family:'Fraunces',serif;font-size:15px;color:var(--heritage);margin:12px 0 4px;font-weight:500}
+.faq-item .faq-a-inner blockquote{border-left:3px solid var(--yellow);background:rgba(255,214,41,.1);border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0;color:var(--ink);font-style:italic}
+.faq-noresults{display:none;text-align:center;padding:40px 20px;color:var(--muted)}
+.faq-noresults.show{display:block}
+
+/* Home FAQ summary */
+.faq-summary{margin-top:44px}
+.faq-summary .fs-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:6px}
+.faq-summary h2{font-size:26px}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:760px){.faq-grid{grid-template-columns:1fr}}
+
+/* Still need help panel */
+.help-panel{margin-top:40px;background:linear-gradient(160deg,var(--heritage),var(--heritage-dark));color:#fff;border-radius:16px;padding:32px 36px;position:relative;overflow:hidden}
+.help-panel::after{content:"";position:absolute;right:-70px;bottom:-70px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,41,.16),transparent 70%)}
+.help-panel .eyebrow{color:var(--yellow)}
+.help-panel h2{color:#fff;font-size:26px;margin:8px 0 10px}
+.help-panel > p{color:rgba(255,255,255,.85);max-width:66ch;font-size:16px;margin-bottom:20px}
+.help-panel .hp-links{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:2}
+.help-panel .hp-links button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:10px;padding:11px 16px;font:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:8px}
+.help-panel .hp-links button:hover{background:var(--yellow);color:var(--heritage);border-color:var(--yellow)}
+.help-panel .hp-links button svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+.help-panel .hp-contact{background:rgba(255,214,41,.14);border-left:4px solid var(--yellow);border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:20px;font-size:15px;position:relative;z-index:2}
+.help-panel .hp-contact strong{color:#fff}
+
 /* ---------- Principle cards ---------- */
 .pr-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
 @media(max-width:760px){.pr-grid{grid-template-columns:1fr}}
@@ -452,6 +507,7 @@ hr.div{border:0;border-top:1px solid var(--line);margin:40px 0}
       <button data-nav="guide" onclick="go('guide')">TheyDo Guide</button>
       <button data-nav="health" onclick="go('health')">Health Score</button>
       <button data-nav="rules" onclick="go('rules')">Golden Rules</button>
+      <button data-nav="faq" onclick="go('faq')">FAQ</button>
     </nav>
   </div>
 </div>
@@ -523,6 +579,40 @@ hr.div{border:0;border-top:1px solid var(--line);margin:40px 0}
       </div>
       <button class="btn" onclick="go('guide')">Open TheyDo Guide
         <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+    </div>
+
+    <div class="faq-summary">
+      <div class="fs-head">
+        <div>
+          <div class="eyebrow">Self-service knowledge base</div>
+          <h2>Frequently asked questions</h2>
+        </div>
+        <button class="btn ghost" onclick="go('faq')">View all FAQs
+          <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+      </div>
+      <p style="color:var(--muted);max-width:64ch">Quick answers to the most common questions about TheyDo, Journey Management and governance at the University.</p>
+      <div class="faq-grid">
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What is TheyDo and why does the University use it?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+          <div class="faq-a"><div class="faq-a-inner"><p>TheyDo is the University of Melbourne's enterprise Journey Management platform, a governed environment for storing journeys, insights, pain points, opportunities and supporting evidence in one central place.</p><p>Rather than treating journey maps as one-off project artefacts, it helps teams maintain a living repository of customer, student and staff insights that can be reused across projects and service improvements.</p></div></div>
+        </div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What value does Journey Management provide?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+          <div class="faq-a"><div class="faq-a-inner"><p>It helps the University reduce duplication of research, create a single source of truth for insights, improve cross-functional alignment, support evidence-based decisions, speed up onboarding and connect customer insights to strategic priorities.</p><p>The goal is not simply to create journey maps, but to maintain a living evidence base that supports continuous improvement.</p></div></div>
+        </div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What is a Journey Owner?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+          <div class="faq-a"><div class="faq-a-inner"><p>A Journey Owner is the accountable business representative responsible for keeping a journey accurate, useful and trusted over time, reviewing accuracy, approving significant updates, validating insights and prioritising opportunities.</p><p>Journey Owners are not expected to be journey designers or platform administrators.</p></div></div>
+        </div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What is the difference between Live and Lockdown environments?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+          <div class="faq-a"><div class="faq-a-inner"><p><strong>Live</strong> is used for approved or actively managed journeys where broader visibility supports collaboration, reuse and cross-team learning.</p><p><strong>Lockdown</strong> is used for sensitive, confidential or early-stage work, with restricted access and additional privacy controls.</p></div></div>
+        </div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>Can users access original source documents?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+          <div class="faq-a"><div class="faq-a-inner"><p>Yes, where evidence links or source documents have been attached, but access should be managed carefully.</p><p>Recommended practice is to upload sanitised documents, link to approved source repositories, restrict access to sensitive material and avoid uploading raw confidential reports.</p></div></div>
+        </div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What support and training is available?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+          <div class="faq-a"><div class="faq-a-inner"><p>The Journey Management team provides platform onboarding, Journey Creator and Owner guidance, governance and data sanitisation support, review and quality assurance checkpoints, and working sessions and coaching.</p></div></div>
+        </div>
+      </div>
+      <p style="margin-top:16px"><button class="btn" onclick="go('faq')">View all FAQs
+        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></p>
     </div>
   </div>
 </section>
@@ -1621,6 +1711,294 @@ hr.div{border:0;border-top:1px solid var(--line);margin:40px 0}
   </div>
 </section>
 
+<!-- ============ FAQ ============ -->
+<section id="view-faq" class="view">
+  <div class="wrap">
+    <button class="back-link" onclick="go('home')">&larr; Back to home</button>
+    <div class="section-head">
+      <div class="badge" style="background:var(--text-blue)">?</div>
+      <div>
+        <div class="eyebrow">Self-service knowledge base</div>
+        <h1>Frequently Asked Questions</h1>
+        <p>Answers to common questions about TheyDo, Journey Management, governance, privacy and getting started. Search or filter by category to find what you need.</p>
+      </div>
+    </div>
+
+    <div class="faq-search">
+      <svg class="si" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="faq-input" placeholder="Search FAQs..." oninput="faqSearch()" aria-label="Search FAQs">
+    </div>
+
+    <div class="faq-filters" id="faq-filters">
+      <button class="active" data-cat="all" onclick="faqFilter('all')">All</button>
+      <button data-cat="getting-started" onclick="faqFilter('getting-started')">Getting Started</button>
+      <button data-cat="governance" onclick="faqFilter('governance')">Governance &amp; Ownership</button>
+      <button data-cat="privacy" onclick="faqFilter('privacy')">Privacy, Security &amp; Data</button>
+      <button data-cat="access" onclick="faqFilter('access')">Access &amp; Environments</button>
+      <button data-cat="support" onclick="faqFilter('support')">Support &amp; Training</button>
+      <button data-cat="adoption" onclick="faqFilter('adoption')">Adoption &amp; Best Practice</button>
+    </div>
+
+    <div class="faq-noresults" id="faq-noresults">No FAQs match your search. Try a different term or clear the search.</div>
+
+    <!-- Getting Started -->
+    <div class="faq-cat" data-cat="getting-started">
+      <h2><span class="cdot" style="background:var(--blue)"></span>Getting Started</h2>
+      <div class="cat-sub">The basics of TheyDo and Journey Management at the University.</div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What is TheyDo and why does the University use it?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>TheyDo is the University of Melbourne's enterprise Journey Management platform. It provides a governed environment for storing journeys, insights, pain points, opportunities and supporting evidence in a central location.</p>
+          <p>Rather than treating journey maps as one-off project artefacts, TheyDo helps teams maintain a living repository of customer, student and staff insights that can be reused across projects and service improvements.</p>
+          <p>The platform supports:</p>
+          <ul><li>Journey governance</li><li>Insight traceability</li><li>Evidence management</li><li>Cross-team collaboration</li><li>Strategic planning and prioritisation</li><li>Knowledge retention</li></ul>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What value does Journey Management provide?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Journey Management helps the University:</p>
+          <ul><li>Reduce duplication of research</li><li>Create a single source of truth for insights</li><li>Improve cross-functional alignment</li><li>Support evidence-based decision making</li><li>Improve onboarding of new staff</li><li>Connect customer insights to strategic priorities and initiatives</li></ul>
+          <p>The goal is not simply to create journey maps, but to maintain a living evidence base that supports continuous improvement.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>Who can use TheyDo?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Any University team with a valid business need can use TheyDo. Current use cases include:</p>
+          <ul><li>Student Services</li><li>Student Services Transformation Program (SSTP)</li><li>Global Learning</li><li>Student Equity and Disability Support (SEDS)</li><li>Financial Aid</li><li>Customer Experience</li><li>Student Wellbeing</li><li>Faculty Admissions</li><li>Alumni and Donor Experience</li></ul>
+          <p>Access is managed through approved governance processes.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>How widely is TheyDo currently used?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>The University currently has:</p>
+          <ul><li>Approximately 1,247 insights</li><li>63 insights mapped to the L0 Student Lifecycle</li><li>7 connected L1 journeys</li><li>70+ active members</li></ul>
+          <p>The majority of current activity sits within Student Services and Global Learning, with adoption continuing to expand across other business areas.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Governance & Ownership -->
+    <div class="faq-cat" data-cat="governance">
+      <h2><span class="cdot" style="background:var(--yellow)"></span>Governance &amp; Ownership</h2>
+      <div class="cat-sub">Roles, accountability and the governance model.</div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What is a Journey Owner?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>A Journey Owner is the accountable business representative responsible for ensuring a journey remains accurate, useful and trusted over time. Journey Owners are responsible for:</p>
+          <ul><li>Reviewing journey accuracy</li><li>Approving significant updates</li><li>Validating insights</li><li>Prioritising opportunities</li><li>Supporting improvement initiatives</li><li>Maintaining organisational confidence in the journey</li></ul>
+          <p>Journey Owners are not expected to be journey designers or platform administrators.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>How many Journey Owners should a journey have?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Recommended model:</p>
+          <ul><li>1 Primary Journey Owner</li><li>1 Secondary or Sub Journey Owner</li><li>2–4 Subject Matter Contributors</li></ul>
+          <p>This provides accountability while ensuring continuity when staff change roles or leave projects.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What is the difference between a Journey Owner and a Journey Creator?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <h5>Journey Creator</h5>
+          <ul><li>Builds the journey artefact</li><li>Uploads insights and evidence</li><li>Conducts analysis</li><li>Facilitates workshops</li></ul>
+          <h5>Journey Owner</h5>
+          <ul><li>Provides business accountability</li><li>Approves major changes</li><li>Validates journey accuracy</li><li>Ensures the journey remains relevant over time</li></ul>
+          <p>Creators may move on after a project, whereas Owners remain accountable for the journey.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What governance model does the University use?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>The University uses a Journey Management governance model based on:</p>
+          <ul><li>Journey Manager oversight</li><li>Journey Owner accountability</li><li>Journey Creator responsibilities</li><li>Evidence traceability</li><li>Data sanitisation practices</li><li>Privacy and security review processes</li><li>Periodic review and maintenance activities</li></ul>
+          <p>The aim is to ensure journeys remain current, trusted and useful.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Privacy, Security & Data -->
+    <div class="faq-cat" data-cat="privacy">
+      <h2><span class="cdot" style="background:var(--maroon)"></span>Privacy, Security &amp; Data</h2>
+      <div class="cat-sub">Handling sensitive information responsibly.</div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>Has privacy been considered?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Yes. Journey Management activities are supported by privacy and governance practices including Privacy Impact Assessment (PIA) considerations where appropriate.</p>
+          <p>Sensitive information should be reviewed and sanitised before being uploaded into TheyDo.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>Can sensitive information be uploaded into TheyDo?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Sensitive information should only be uploaded where appropriate governance and privacy requirements have been met. Recommended practice is to:</p>
+          <ul><li>De-identify information</li><li>Remove personal identifiers</li><li>Use restricted environments where necessary</li><li>Store highly sensitive source material in approved University systems</li></ul>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>Can users access original research reports and evidence?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Yes, where evidence links or source documents have been attached. However, access should be managed carefully. Recommended practice is to:</p>
+          <ul><li>Upload sanitised documents</li><li>Link to approved source repositories</li><li>Restrict access to sensitive source material</li><li>Avoid uploading raw confidential reports</li></ul>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>How secure is TheyDo?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>TheyDo provides enterprise-level security controls including:</p>
+          <ul><li>Role-based permissions</li><li>Workspace-level access controls</li><li>Visibility management</li><li>GDPR-aligned privacy practices</li><li>SOC 2 Type II certified infrastructure and security controls</li></ul>
+          <p>Users should still follow University privacy and governance requirements when uploading content.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What is data sanitisation and why is it important?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Data sanitisation is the process of removing or reducing information that could identify individuals or expose sensitive information before it is uploaded into TheyDo. Examples include:</p>
+          <ul><li>Removing names and contact details</li><li>Removing student or staff identifiers</li></ul>
+          <p>This helps protect privacy while still preserving the value of the insight.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Access & Environments -->
+    <div class="faq-cat" data-cat="access">
+      <h2><span class="cdot" style="background:var(--green)"></span>Access &amp; Environments</h2>
+      <div class="cat-sub">Choosing the right environment and access level.</div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What is the difference between the Live and Lockdown environments?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <h5>Live Environment</h5>
+          <p>Used for approved or actively managed journeys where broader visibility is beneficial. Benefits:</p>
+          <ul><li>Greater collaboration</li><li>Increased reuse of insights</li><li>Better organisational visibility</li><li>Improved cross-team learning</li></ul>
+          <h5>Lockdown Environment</h5>
+          <p>Used for sensitive, confidential or early-stage work. Benefits:</p>
+          <ul><li>Restricted access</li><li>Additional privacy controls</li><li>Greater stakeholder confidence</li></ul>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>Which environment should my team use?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>As a general principle:</p>
+          <blockquote>Use the most open environment possible while still protecting privacy and confidentiality requirements.</blockquote>
+          <p>Sensitive information should remain in restricted environments until reviewed and approved.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>Are there different levels of access available?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Yes. Access can be controlled through:</p>
+          <ul><li>Organisation roles</li><li>Workspace roles</li><li>Visibility settings</li><li>Editing permissions</li><li>Viewing permissions</li><li>Custom access configurations</li></ul>
+          <p>Access is not limited to simply "open" or "locked down".</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>Who decides who gets access?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Access is determined by:</p>
+          <ul><li>Journey Owners</li><li>Business stakeholders</li><li>The Journey Management team</li><li>Privacy and governance considerations</li></ul>
+          <p>Access should align with business need and sensitivity of content.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Support & Training -->
+    <div class="faq-cat" data-cat="support">
+      <h2><span class="cdot" style="background:var(--blue)"></span>Support &amp; Training</h2>
+      <div class="cat-sub">Getting help and onboarding your team.</div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What support is available?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>The Journey Management team provides:</p>
+          <ul><li>Platform onboarding</li><li>Journey Creator guidance</li><li>Journey Owner guidance</li><li>Governance support</li><li>Data sanitisation guidance</li><li>Review and quality assurance checkpoints</li><li>Working sessions and coaching</li></ul>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What is the recommended onboarding process?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <ol class="steps-num">
+            <li>Define the purpose and scope.</li>
+            <li>Identify Journey Owners and contributors.</li>
+            <li>Review privacy and sensitivity considerations.</li>
+            <li>Select the appropriate environment.</li>
+            <li>Upload insights.</li>
+            <li>Review with Journey Owners.</li>
+            <li>Expand access as confidence grows.</li>
+          </ol>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>How often should journeys be reviewed?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Recommended minimum review cadence:</p>
+          <ul><li>Quarterly review for active journeys</li><li>Annual review for stable journeys</li><li>Additional reviews following major service changes, research activities or organisational changes</li></ul>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>Where can I find guidance and resources?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Supporting resources include:</p>
+          <ul><li>Working Sessions with the Journey Management Team</li></ul>
+          <p>This resource is designed to help teams confidently build, govern and maintain journeys. You can also use the Journey Creator, Journey Owner and TheyDo Guide sections of this assistant.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Adoption & Best Practice -->
+    <div class="faq-cat" data-cat="adoption">
+      <h2><span class="cdot" style="background:var(--pink)"></span>Adoption &amp; Best Practice</h2>
+      <div class="cat-sub">Getting the most from Journey Management.</div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What are the biggest benefits of using TheyDo?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Common benefits include:</p>
+          <ul><li>Centralised insight management</li><li>Better evidence traceability</li><li>Reduced research duplication</li><li>Improved collaboration</li><li>Faster onboarding</li><li>Better prioritisation and decision making</li><li>Stronger customer and student understanding</li></ul>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>What are the most common mistakes teams make?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Common pitfalls include:</p>
+          <ul><li>Not assigning a Journey Owner</li><li>Treating journeys as one-off deliverables</li><li>Failing to review journeys regularly</li><li>Giving broad access before governance checks are complete</li></ul>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>How do we know when our journey is ready for wider visibility?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Before expanding access, teams should confirm:</p>
+          <ul><li>A Journey Owner has been assigned</li><li>Sensitive information has been reviewed</li><li>Evidence has been sanitised</li><li>Governance requirements have been met</li><li>Stakeholders are comfortable with visibility settings</li></ul>
+          <p>Once these checks are complete, visibility can be expanded progressively.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span class="qmark">Q</span>How does Journey Management support continuous improvement?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Journey Management helps teams move beyond project-based thinking. By maintaining journeys over time, teams can:</p>
+          <ul><li>Track recurring pain points</li><li>Monitor emerging opportunities</li><li>Reuse insights across initiatives</li><li>Measure progress over time</li><li>Inform planning and prioritisation activities</li></ul>
+          <p>This creates a stronger connection between customer evidence and organisational decision-making.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Still need help -->
+    <div class="help-panel">
+      <div class="eyebrow">Still need help?</div>
+      <h2>Can't find what you're looking for?</h2>
+      <div class="hp-contact">Contact the <strong>Journey Manager, Damian Da Silva</strong> for support, onboarding assistance, governance advice or guidance on privacy and data considerations.</div>
+      <p>Explore the guides and resources in this assistant:</p>
+      <div class="hp-links">
+        <button onclick="go('owner')"><svg viewBox="0 0 24 24"><path d="M20 7 12 3 4 7v6c0 5 3.5 7 8 8 4.5-1 8-3 8-8Z"/></svg>Journey Owner Guide</button>
+        <button onclick="go('creator')"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Journey Creator Guide</button>
+        <button onclick="go('rules')"><svg viewBox="0 0 24 24"><path d="m12 3 7 4v5c0 4-3 6-7 8-4-2-7-4-7-8V7Z"/></svg>Governance Framework</button>
+        <button onclick="go('guide');gsec(4)"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 13h6"/></svg>Data Sanitisation Guidance</button>
+        <button onclick="go('guide')"><svg viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5Z"/><path d="M6 10v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg>Training &amp; Onboarding Resources</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <span>Journey Governance Assistant · University of Melbourne · Journey Management &amp; TheyDo</span>
@@ -1663,6 +2041,36 @@ function stage(role,i){
 /* ---------- Expandable cards ---------- */
 function toggle(head){head.parentElement.classList.toggle('open');}
 function ptoggle(head){head.parentElement.classList.toggle('open');}
+
+/* ---------- FAQ ---------- */
+function faqToggle(q){q.parentElement.classList.toggle('open');}
+let faqCat='all';
+function faqFilter(cat){
+  faqCat=cat;
+  document.querySelectorAll('#faq-filters button').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));
+  faqApply();
+}
+function faqSearch(){faqApply();}
+function faqApply(){
+  const term=(document.getElementById('faq-input').value||'').trim().toLowerCase();
+  let anyVisible=false;
+  document.querySelectorAll('#view-faq .faq-cat').forEach(cat=>{
+    const catMatch=(faqCat==='all'||cat.dataset.cat===faqCat);
+    let catHasVisible=false;
+    cat.querySelectorAll('.faq-item').forEach(item=>{
+      const text=item.textContent.toLowerCase();
+      const termMatch=(!term||text.includes(term));
+      const show=catMatch&&termMatch;
+      item.classList.toggle('faq-hidden',!show);
+      if(show){catHasVisible=true;anyVisible=true;}
+      // auto-expand on active search, collapse when cleared
+      if(term&&show){item.classList.add('open');}
+      else if(!term){item.classList.remove('open');}
+    });
+    cat.classList.toggle('hidden-cat',!catHasVisible);
+  });
+  document.getElementById('faq-noresults').classList.toggle('show',!anyVisible);
+}
 
 /* ---------- Guide sub-sections ---------- */
 function gsec(i){
